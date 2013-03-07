@@ -182,7 +182,7 @@ module.exports = function(grunt) {
 
     // Merge in the Jam configuration.
     if (grunt.file.exists(options.jamConfig)) {
-      _.extend(options, require(process.cwd() + "/" + options.jamConfig));
+      _.merge(options, require(process.cwd() + "/" + options.jamConfig));
     }
 
     grunt.verbose.writeflags(options, "Options");

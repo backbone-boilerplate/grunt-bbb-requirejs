@@ -27,17 +27,10 @@ module.exports = function(grunt) {
     };
   });
 
-  grunt.registerMultiTask("requirejs", "Build a RequireJS project.",
-  function() {
+  grunt.registerMultiTask("requirejs", "Build a RequireJS project.", function() {
     var done = this.async();
 
     var options = this.options({
-      // Include the main configuration file.
-      mainConfigFile: "app/config.js",
-
-      // Output file.
-      out: "dist/debug/source.js",
-
       // Root application module.
       name: "config",
 
@@ -51,7 +44,9 @@ module.exports = function(grunt) {
       skipModuleInsertion: false,
 
       // Do not wrap everything in an IIFE.
-      wrap: false
+      wrap: false,
+
+      jamConfig: "vendor/jam/require.config.js"
     });
 
     // Need to access the CommonJS builder.
@@ -79,10 +74,12 @@ module.exports = function(grunt) {
 
         grunt.verbose.writeflags(options, "Options");
 
+        console.log(options);
+
         requirejs.optimize(options, function(response) {
           done();
         });
-      });
-    });
+    //  });
+    //});
   });
 };

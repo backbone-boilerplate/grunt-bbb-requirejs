@@ -194,8 +194,8 @@ module.exports = function(grunt) {
           name: "almond",
 
           // Set the Bootstrap as the main entry point.
-          include: ["bootstrap"],
-          insertRequire: ["bootstrap"],
+          include: ["main"],
+          insertRequire: ["main"],
 
           // Since we bootstrap with nested `require` calls this option allows
           // R.js to find them.

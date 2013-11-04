@@ -5,15 +5,18 @@
  * Copyright (c) 2013 Tim Branyen, Tyler Kellen, contributors
  * Licensed under the MIT license.
  */
-"use strict";
-
 module.exports = function(grunt) {
-  var ENV = process.env;
-  var CWD = process.cwd();
+  const ENV = process.env;
+  const CWD = process.cwd();
 
-  var fs = require("fs");
-  var path = require("path");
-  var requirejs = require("requirejs");
+  const fs = require("fs");
+  const path = require("path");
+
+  // External libs.
+  const requirejs = require("requirejs");
+  const Compiler = require("es6-module-transpiler").Compiler;
+
+  // Shorthand Lo-Dash and the Grunt logger.
   var _ = grunt.util._;
   var log = grunt.log;
 
@@ -76,8 +79,13 @@ module.exports = function(grunt) {
               var shortname = name.slice(name.indexOf(appDir));
               var dep, all;
 
-              // Convert to CommonJS first.
-              contents = commonJs.convert(name, contents);
+              if (options.es6) {
+                // Convert from ES6.
+                contents = new Compiler(contents, moduleName.slice(-2, 0)).toAMD();
+              } else {
+                // Convert from CommonJS.
+                contents = commonJs.convert(name, contents);
+              }
 
               try {
                 dep = parse.findDependencies(name, contents)
@@ -233,6 +241,10 @@ module.exports = function(grunt) {
             // main application path.
             if (!moduleDir) {
               return contents;
+            }
+
+            if (options.es6) {
+              return new Compiler(contents, moduleName.slice(-2, 0)).toAMD();
             }
 
             // Convert CommonJS to AMD.

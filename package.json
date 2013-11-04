@@ -1,7 +1,7 @@
 {
   "name": "grunt-bbb-requirejs",
   "description": "Optimize RequireJS projects using r.js.",
-  "version": "0.1.0-alpha.6",
+  "version": "0.1.0-alpha.7",
   "homepage": "https://github.com/backbone-boilerplate/grunt-bbb-requirejs",
   "repository": {
     "type": "git",
@@ -18,14 +18,15 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "requirejs": "~2.1"
+    "requirejs": "~2.1.9",
+    "es6-module-transpiler": "~0.3.3"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "0.1.1rc6",
     "grunt-contrib-nodeunit": "0.1.2rc6",
     "grunt-contrib-clean": "0.4.0rc6",
     "grunt-contrib-internal": "*",
-    "grunt": "0.4.0rc7"
+    "grunt": "0.4.1"
   },
   "keywords": [
     "gruntplugin"

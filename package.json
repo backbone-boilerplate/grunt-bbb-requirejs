@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "requirejs": "~2.1.9",
-    "es6-module-transpiler": "~0.3.3"
+    "es6-module-transpiler": "~0.2.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "0.1.1rc6",
